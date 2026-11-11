@@ -4,25 +4,25 @@ Template oficial del curso **IA Aplicada al Desarrollo de Software**.
 
 Este repositorio es tu entorno de trabajo durante los 5 módulos. No crearás repos nuevos por módulo — cada PR de evaluación agrega capas sobre este mismo repo. Al terminar el diplomado, el historial de commits es tu portafolio profesional.
 
-> 🏦 **Contexto narrativo:** este template es el **sistema nuevo Greenfield** que vas a construir para **LegacyPay** (la empresa ficticia del caso de estudio del curso). Coexiste con el monolito legado de LegacyPay y demuestra el patrón Agent Manager. Los merchants en `data/merchants_sample.json` y las herramientas en `agent/tools/` (como `merchant_lookup.py`) salen del universo LegacyPay. 
+> 🏦 **Contexto narrativo:** este template es el **sistema nuevo Greenfield** que vas a construir para **LegacyPay** (la empresa ficticia del caso de estudio del curso). Coexiste con el monolito legado de LegacyPay y demuestra el patrón Agent Manager. Los merchants en `data/merchants_sample.json` y las herramientas en `agent/tools/` (como `merchant_lookup.py`) salen del universo LegacyPay.
 
 ---
 
 ## Stack
 
-| Componente | Tecnología | Para qué |
-|---|---|---|
-| API Backend | FastAPI + Pydantic v2 | Endpoints tipados, validación automática, OpenAPI docs |
-| Frontend | Streamlit | Prototipado rápido de UI |
-| Mock LLM | FastAPI (servidor local) | Simula OpenAI sin usar cuota ni API key real |
-| Agente | ReAct pattern | Módulo 4 — Track B |
-| Tests | pytest + pytest-asyncio | Suite incremental por módulo |
-| Linting | ruff | Estilo + errores comunes |
-| Tipos | mypy | Errores de tipo en tiempo de desarrollo |
-| Seguridad | bandit | Vulnerabilidades conocidas |
-| Dependencias | uv | Gestor moderno, lockfile determinista |
-| CI | GitHub Actions | Harness automático en cada PR |
-| Contenedores | Docker + docker-compose | Ambiente reproducible |
+| Componente   | Tecnología               | Para qué                                               |
+| ------------ | ------------------------ | ------------------------------------------------------ |
+| API Backend  | FastAPI + Pydantic v2    | Endpoints tipados, validación automática, OpenAPI docs |
+| Frontend     | Streamlit                | Prototipado rápido de UI                               |
+| Mock LLM     | FastAPI (servidor local) | Simula OpenAI sin usar cuota ni API key real           |
+| Agente       | ReAct pattern            | Módulo 4 — Track B                                     |
+| Tests        | pytest + pytest-asyncio  | Suite incremental por módulo                           |
+| Linting      | ruff                     | Estilo + errores comunes                               |
+| Tipos        | mypy                     | Errores de tipo en tiempo de desarrollo                |
+| Seguridad    | bandit                   | Vulnerabilidades conocidas                             |
+| Dependencias | uv                       | Gestor moderno, lockfile determinista                  |
+| CI           | GitHub Actions           | Harness automático en cada PR                          |
+| Contenedores | Docker + docker-compose  | Ambiente reproducible                                  |
 
 ---
 
@@ -34,6 +34,7 @@ Este repositorio es tu entorno de trabajo durante los 5 módulos. No crearás re
 - **Docker** (para demo con docker-compose)
 
 > Si eres nuevo en alguna de estas herramientas, lee primero:
+>
 > - [docs/nivelacion/00_python_essentials.md](docs/nivelacion/00_python_essentials.md) — Type hints, Pydantic v2, async, pytest
 > - [docs/nivelacion/01_fastapi_guide.md](docs/nivelacion/01_fastapi_guide.md) — Endpoints, modelos, errores HTTP, TestClient
 > - [docs/nivelacion/02_docker_guide.md](docs/nivelacion/02_docker_guide.md) — Dockerfile, docker-compose, variables de entorno
@@ -156,13 +157,13 @@ Copia `.env.example` a `.env` antes de correr el backend:
 cp .env.example .env
 ```
 
-| Variable | Default | Descripción |
-|---|---|---|
-| `MOCK_MODE` | `true` | `true` = usa el Mock LLM local, no requiere API key |
-| `OPENAI_BASE_URL` | `http://localhost:8001/v1` | URL del LLM (mock o real) |
-| `OPENAI_API_KEY` | `sk-mock-key-123` | Solo necesaria si `MOCK_MODE=false` |
-| `BACKEND_URL` | `http://localhost:8000` | URL que usa el frontend para conectarse |
-| `SECRET_KEY` | `dev-secret-...` | Cambiar en producción |
+| Variable          | Default                    | Descripción                                         |
+| ----------------- | -------------------------- | --------------------------------------------------- |
+| `MOCK_MODE`       | `true`                     | `true` = usa el Mock LLM local, no requiere API key |
+| `OPENAI_BASE_URL` | `http://localhost:8001/v1` | URL del LLM (mock o real)                           |
+| `OPENAI_API_KEY`  | `sk-mock-key-123`          | Solo necesaria si `MOCK_MODE=false`                 |
+| `BACKEND_URL`     | `http://localhost:8000`    | URL que usa el frontend para conectarse             |
+| `SECRET_KEY`      | `dev-secret-...`           | Cambiar en producción                               |
 
 > `.env` está en `.gitignore`. Nunca lo commitees. Nunca pongas API keys reales en el código.
 
@@ -243,14 +244,14 @@ release/candidate ← Congelación de features. Solo bugfixes. PR final = Demo D
 
 ### Entregables por módulo
 
-| Módulo | PR desde | Criterio mínimo de CI |
-|---|---|---|
-| M0 Onboarding | cualquier rama | `pytest` pasa |
-| M1 Harness | `feature/m1-harness` | `ruff + mypy + bandit + pytest` pasan |
-| M2 Arquitectura | `feature/m2-arquitectura` | CI verde + `docs/ADR-001.md` existe |
-| M3 TDD | `feature/m3-tdd` | CI verde + cobertura ≥ 60% |
-| M4 Agente | `feature/m4-agent` | CI verde + Golden Set ≥ 80% (Track B) |
-| M5 RC | `release/candidate` | CI verde + `DEMO_PLAN.md` + `AI_USAGE.md` |
+| Módulo          | PR desde                  | Criterio mínimo de CI                     |
+| --------------- | ------------------------- | ----------------------------------------- |
+| M0 Onboarding   | cualquier rama            | `pytest` pasa                             |
+| M1 Harness      | `feature/m1-harness`      | `ruff + mypy + bandit + pytest` pasan     |
+| M2 Arquitectura | `feature/m2-arquitectura` | CI verde + `docs/ADR-001.md` existe       |
+| M3 TDD          | `feature/m3-tdd`          | CI verde + cobertura ≥ 60%                |
+| M4 Agente       | `feature/m4-agent`        | CI verde + Golden Set ≥ 80% (Track B)     |
+| M5 RC           | `release/candidate`       | CI verde + `DEMO_PLAN.md` + `AI_USAGE.md` |
 
 ---
 
@@ -282,3 +283,9 @@ Ambos tracks comparten los mismos requisitos de CI, `AI_USAGE.md`, `DEMO_PLAN.md
 - [bandit — security linter](https://bandit.readthedocs.io/)
 - [pytest](https://docs.pytest.org/)
 - [ReAct pattern (paper)](https://arxiv.org/abs/2210.03629)
+
+## Autor/a
+
+**Nombre:** Carlos Gómez
+**Ciudad:** Asunción
+**Qué me gustaría construir en el programa:** Habilidades necesarias para desarrollar software de calidad con IA
